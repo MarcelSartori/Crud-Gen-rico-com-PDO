@@ -1,7 +1,7 @@
 <?php
 
 /**
-* Classe abastrata que possui a organização do CRUD
+* Classe que faz a conexão com o Banco de Dados via PDO
 * @author Marcel Sartori - contato@mslwebstudio.com.br
 */
 
