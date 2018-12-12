@@ -23,13 +23,6 @@ class Usuarios extends Crud{
 	}
 	
 	/** 
-	* Método getNome (Retorna o nome do usuário gravado na variável $nome)
-	*/
-	public function getNome(){
-		return $this->nome;
-	}
-	
-	/** 
 	* Método setEmail (grava o email do usuário na variável $email)
 	* @param $email = varchar (Email do usuário a ser gravado)
 	*/
@@ -38,20 +31,13 @@ class Usuarios extends Crud{
 	}
 	
 	/** 
-	* Método getEmail (Retorna o email do usuário gravado na variável $email)
-	*/
-	public function getEmail(){
-		return $this->email;
-	}
-
-	/** 
-	* Método cretae (Insere o usuário no banco de dados)
+	* Método create (Insere o usuário no banco de dados)
 	*/
 	public function create(){
 		$sql  = "INSERT INTO $this->table (nome, email) VALUES (:nome, :email)";
 		$stmt = DB::prepare($sql);
-		$stmt->bindParam(':nome', $this->nome);
-		$stmt->bindParam(':email', $this->email);
+		$stmt->bindParam(':nome', $this->nome, PDO::PARAM_STR);
+		$stmt->bindParam(':email', $this->email, PDO::PARAM_STR);
 		return $stmt->execute(); 
 	}
 	
@@ -62,9 +48,9 @@ class Usuarios extends Crud{
 	public function update($id){
 		$sql  = "UPDATE $this->table SET nome = :nome, email = :email WHERE id = :id";
 		$stmt = DB::prepare($sql);
-		$stmt->bindParam(':nome', $this->nome);
-		$stmt->bindParam(':email', $this->email);
-		$stmt->bindParam(':id', $id);
+		$stmt->bindParam(':nome', $this->nome, PDO::PARAM_STR);
+		$stmt->bindParam(':email', $this->email, PDO::PARAM_STR);
+		$stmt->bindParam(':id', $id, PDO::PARAM_INT);
 		return $stmt->execute();
 	}
 }
